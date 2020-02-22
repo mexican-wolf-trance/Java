@@ -1,0 +1,84 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ChainCode<ChainCode>",
+            "request": "launch",
+            "mainClass": "ChainCode.ChainCode",
+            "projectName": "ChainCode"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-financialCalculator<FinancialCalculator>",
+            "request": "launch",
+            "mainClass": "FinancialCalculator.financialCalculator",
+            "projectName": "FinancialCalculator"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PathFinder<JAVAworkspace_529eb24c>",
+            "request": "launch",
+            "mainClass": "src.PathFinder",
+            "projectName": "JAVAworkspace_529eb24c"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestQueue<TestQueue>",
+            "request": "launch",
+            "mainClass": "TestQueue.TestQueue",
+            "projectName": "TestQueue"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestStack<TestStack>",
+            "request": "launch",
+            "mainClass": "TestStack.TestStack",
+            "projectName": "TestStack"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-employeeArray<employeeArray>",
+            "request": "launch",
+            "mainClass": "employeeArray.employeeArray",
+            "projectName": "employeeArray"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-MachineTest<inheritanceProject>",
+            "request": "launch",
+            "mainClass": "inheritanceProject.MachineTest",
+            "projectName": "inheritanceProject"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-loopsPractice<loopsPractice>",
+            "request": "launch",
+            "mainClass": "loopsPractice.loopsPractice",
+            "projectName": "loopsPractice"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-mathPractice<mathPractice>",
+            "request": "launch",
+            "mainClass": "mathPractice.mathPractice",
+            "projectName": "mathPractice"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-creditCardz<validateCreditCardz>",
+            "request": "launch",
+            "mainClass": "validateCreditCardz.creditCardz",
+            "projectName": "validateCreditCardz"
+        }
+    ]
+}
