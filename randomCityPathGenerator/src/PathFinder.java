@@ -11,7 +11,7 @@ public class PathFinder
         {
             try
             {
-                System.out.println("Enter the number of cities:");            
+                System.out.println("Enter the number of cities between 4 and 9:");            
                 k = cityInput.nextInt();
                 if(k >= 4 && k <= 9)
                     break;
