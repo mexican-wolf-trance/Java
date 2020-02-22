@@ -7,9 +7,32 @@ public class PathFinder
     {
         int k = 0;
         final Scanner cityInput = new Scanner(System.in);
-        System.out.print("Enter the number of cities");
-        k = cityInput.nextInt();
-
-        System.out.print(k);
+        while(true)
+        {
+            try
+            {
+                System.out.println("Enter the number of cities:");            
+                k = cityInput.nextInt();
+                if(k >= 4 && k <= 9)
+                    break;
+                else
+                {
+                    System.out.println("That is an integer, but it must be between 4 and 9");
+                    cityInput.next();
+                    System.out.println();
+                    continue;
+                }
+                break;
+            }
+            catch(InputMismatchException e)
+            {
+                System.out.println("Must be an integer between 4 and 9");
+                cityInput.next();
+                System.out.println();
+                continue;
+            }
+        }
+        System.out.print(k + " cities");
+        cityInput.close();
     }
 }
