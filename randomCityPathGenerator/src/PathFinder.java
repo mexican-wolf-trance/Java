@@ -22,7 +22,6 @@ public class PathFinder
                     System.out.println();
                     continue;
                 }
-                break;
             }
             catch(InputMismatchException e)
             {
