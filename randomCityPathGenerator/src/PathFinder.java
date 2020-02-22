@@ -18,7 +18,7 @@ public class PathFinder
                 else
                 {
                     System.out.println("That is an integer, but it must be between 4 and 9");
-                    cityInput.next();
+                    cityInput.nextLine();
                     System.out.println();
                     continue;
                 }
@@ -26,7 +26,7 @@ public class PathFinder
             catch(InputMismatchException e)
             {
                 System.out.println("Must be an integer between 4 and 9");
-                cityInput.next();
+                cityInput.nextLine();
                 System.out.println();
                 continue;
             }
