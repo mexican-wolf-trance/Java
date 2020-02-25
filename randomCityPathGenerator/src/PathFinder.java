@@ -1,12 +1,14 @@
 package src;
 import java.util.*;
 
+//This is a class deticated to the input validation
 public class PathFinder
 {
     private int k;
     private int n;
 
-    PathFinder( int k, int n)
+    //Input validation object
+    PathFinder( int k, int n )
     {
         this.k = k;
         this.n = n;
