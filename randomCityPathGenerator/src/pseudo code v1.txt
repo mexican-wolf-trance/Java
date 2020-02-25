@@ -1,0 +1,77 @@
+public class Main
+{
+	public static void main(String[] args) {
+		
+        int k;                  //total cities
+        int n;                  //size of grid where cities can spawn
+        ArrayList<City> cities; //actual list of cities
+        int[] order;            //order to travel through cities in each perm, size k
+        
+        float bestDistance;     //the best result at any given perm
+        int[] bestOrder;        //the order of cities that resulted in bestDistance
+
+        prompt k;               //user input 4<=k<=9
+        prompt n;               //user input 10<=n<=30
+
+        for i = 0; i < k; i++
+            cities.add(new City(randX, randY))      //new city with random coords within n
+            order[i] = i;                           //sets the first order of cities
+
+        bestDistance = calcDistance();              //calculate path distance for the first (default) path, and set to bestDistance
+        for i = 0; i < numPermutations(k - 1); i++  //set to (k-1)! perms because we always start at city 0 (is this correct?)
+            order = nextOrder();                    //find next path
+            d = calcDistance(cities, order);        //calc distance of path
+            if d < bestDistance                     //check if new best path
+                bestDistance = d;
+            
+
+	}
+
+    //gets next permutation of cities according to lexicographical ordering
+    nextOrder(){
+        int I = -1;                          //largest index where the value has at least one value higher than it later in the list, defaulted to -1
+        for i = 1; i < order.length; i++     //loops through to find the current I, starts at index 1 because every path starts at city 0, so we don't want to change that
+            if order[i] < order[i+1]
+                I = i;
+        if I == -1                           //if it is the last permutation, I will stay -1, so this is the exit clause
+            end;
+        else                                 //if not the last, continue 
+            int J = -1;                      //largest index where the value is greater than the value at I, also defaulted to -1
+            for j = 1; j < order.length; j++ //loops through to find J, also starts at index 1
+                if order[I] < order[J] 
+                    J = j;
+            
+            swap (I, J)                      // swap values at I and J
+
+            //reverses the order of values after index I in the "order" array. this combined with the above step results in the next permutation in numerical order
+            int size = order.length - I - 1;
+            int[] end = new int[size];       //splice of "order" from order[I+1] to end
+            reverse(end);                    //reverse the order of indices in end
+            order.append(end);               //replace the above indices with the reversed end indices, 
+                                             //more of a replace than append but need to work out logic there
+
+    }
+
+    //calculate the distance for each path using pyth theorem
+    float calcDistance(cities, order){
+        
+    }
+
+    //the number of perms to check is k!, so i just do a simple factorial alg
+    int numPermutations(int k){
+        if(k == 1)
+            return 1;
+        else
+            return k * numPermutations(k-1);
+    }
+}
+
+class City{
+    int x;
+    int y;
+
+    public City(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+}
