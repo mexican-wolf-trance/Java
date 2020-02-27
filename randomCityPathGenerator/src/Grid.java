@@ -1,25 +1,20 @@
 package src;
 
 public class Grid {
-    private int xLength;
-    private int yLength;
+    private int sideLength;
     private char[][] grid;
 
     /* Constructor */
-    Grid(int x, int y) {
-        this.xLength = x;
-        this.yLength = y;
-        this.grid = new char[this.xLength][this.yLength];
+    Grid(int length) {
+        this.sideLength = length;
+        this.grid = new char[this.sideLength][this.sideLength];
 
         this.reset();
     }
 
-    /* Getters */
-    public int getXLength() {
-        return this.xLength;
-    }
-    public int getYLength() {
-        return this.yLength;
+    /* Getter */
+    public int getLength() {
+        return this.sideLength;
     }
 
     /* Test if there is a city at the coordinates. */
@@ -27,20 +22,33 @@ public class Grid {
         return this.grid[xCoord][yCoord] != ' '; // Return true if there is a city at the location.
     }
 
-    /* Place a city at the given location. */
-    public void placeCity(char city, int xCoord, int yCoord) {
+    /* Create a city at the given location. */
+    public void createCity(char city, int xCoord, int yCoord) {
         grid[xCoord][yCoord] = city;
     }
 
     /* Output the grid. */
     public void output() {
-        // TODO finish output...
+        for(int topIter = 0; topIter < this.sideLength; topIter++) {
+            System.out.print("+   ");
+        }
+        System.out.println("+");
+        for(int rowIter = 0; rowIter < this.sideLength; rowIter++) {
+            for(int columnIter = 0; columnIter < this.sideLength; columnIter++) {
+                System.out.print("  " + this.grid[columnIter][rowIter] + " ");
+            }
+            System.out.println();
+            for(int lineIter = 0; lineIter < this.sideLength; lineIter++) {
+                System.out.print("+   ");
+            }
+            System.out.println("+");
+        }
     }
 
     /* Reset to a blank grid. */
     public void reset() {
-        for(int i = 0; i < this.xLength; i++) {
-            for(int j = 0; j < this.yLength; j++) {
+        for(int i = 0; i < this.sideLength; i++) {
+            for(int j = 0; j < this.sideLength; j++) {
                 this.grid[i][j] = ' ';
             }
         }
