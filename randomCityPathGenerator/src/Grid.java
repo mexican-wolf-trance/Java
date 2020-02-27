@@ -23,8 +23,8 @@ public class Grid {
     }
 
     /* Create a city at the given location. */
-    public void createCity(char city, int xCoord, int yCoord) {
-        grid[xCoord][yCoord] = city;
+    public void createCity(char city, int xCoord) {
+        grid[xCoord][xCoord] = city;
     }
 
     /* Output the grid. */
