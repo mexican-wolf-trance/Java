@@ -1,13 +1,29 @@
 package src;
 import java.util.*;
 
+/*
+randomCityPathGenerator
+Main.java
+Grid.java, City.java, PathFinder.java
+No external files created
+Charles Wyatt, Jordan Lanius, Jared Hunsaker
+cwdh4@mail.umsl.edu, 
+COMPSCI 4500
+02/28/2020
 
+This program asks the user to generate a grid of a number of cities of their choosing
+(between 4 and 9 cities for real) and then our program will determine the shortest path
+between the cities.
+
+Did not use any external sources...
+
+ */
 public class Main
 {
     public static void main (String[] args)
     {
         
-        System.out.println("I'm made it at least here...");
+        System.out.println("I made it at least here...");
         
         PathFinder Pathfinder1 = new PathFinder(0,0);
         Pathfinder1.setK(); 
@@ -22,7 +38,8 @@ public class Main
 		int[] nums = new int[]{0,1,2,3,4,5}; //temporary hardcoded city list
 		
 		int count = 1;
-        int max = numPermutations(5); //max set to 1 less than size because they all start at 0, will end up being K - 1
+		int max = numPermutations(Pathfinder1.getK()-1);
+        //int max = numPermutations(5); //max set to 1 less than size because they all start at 0, will end up being K - 1
         //test output
 		for (int i = 0; i < nums.length; i++){
 	        System.out.print(nums[i]);
