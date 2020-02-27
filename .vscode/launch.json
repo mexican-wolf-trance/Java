@@ -4,13 +4,8 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - PathFinder",
-            "request": "launch",
-            "mainClass": "PathFinder",
-            "projectName": "1"
-        },
+        
+
         {
             "type": "java",
             "name": "Debug (Launch) - Current File",
@@ -35,7 +30,7 @@
             "type": "java",
             "name": "Debug (Launch)-PathFinder<JAVAworkspace_529eb24c>",
             "request": "launch",
-            "mainClass": "src.PathFinder",
+            "mainClass": "src.Main",
             "projectName": "JAVAworkspace_529eb24c"
         },
         {

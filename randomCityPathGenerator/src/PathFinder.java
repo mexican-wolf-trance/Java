@@ -14,7 +14,7 @@ public class PathFinder
         this.n = n;
     }
 
-    public int getK()
+    public int setK()
     {
         final Scanner cityInput = new Scanner(System.in);
 
@@ -40,10 +40,11 @@ public class PathFinder
         } while (k < 4 || k > 9);
 
         cityInput.close();
+        System.out.println("k = " + k);
         return this.k;
     }
 
-    public int getN()
+    public int setN()
     {
         final Scanner cityInput = new Scanner(System.in);
         System.out.println("Enter the length of one side of the square grid between 10 and 30:");            
@@ -64,7 +65,17 @@ public class PathFinder
        } while (n < 10 || n > 30);
 
        cityInput.close();
+       System.out.println("n = " + n);
        return this.n;
+    }
+    public int getK()
+    {
+        return this.k;
+    }
+
+    public int getN()
+    {
+        return this.n;
     }
 
     // public static void inputValidation (final String[] args)
