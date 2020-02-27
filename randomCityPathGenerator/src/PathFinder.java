@@ -39,7 +39,7 @@ public class PathFinder
             }
         } while (k < 4 || k > 9);
 
-        cityInput.close();
+        //cityInput.close();
         System.out.println("k = " + k);
         return this.k;
     }
@@ -64,7 +64,7 @@ public class PathFinder
            }
        } while (n < 10 || n > 30);
 
-       cityInput.close();
+       //cityInput.close();
        System.out.println("n = " + n);
        return this.n;
     }
