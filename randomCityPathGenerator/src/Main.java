@@ -1,3 +1,20 @@
+/* Homework 3 - Analyzing a Random TSP
+ * CS 4500 - 02
+ * February 28, 2020
+ * Authors: Jared Hunsaker -
+ *          Jordan Lanius  - jwlq89@mail.umsl.edu
+ *          Charles Wyatt  -
+ *
+ * - Analyzing a Random TSP -
+ * This program finds the shortest path between K cities in a N x N grid.
+ *
+ * Project Files: > Main.java <, PathFinder.java, Order.java, Grid.java, City.java
+ * External Files Required: N/A
+ * External Files Created: N/A
+ *
+ * Resources Used: N/A
+ */
+
 package src;
 import java.util.*;
 
