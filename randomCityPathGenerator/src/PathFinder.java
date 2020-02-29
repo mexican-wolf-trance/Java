@@ -11,8 +11,6 @@
  *
  * Project Files: Main.java, > PathFinder.java <, Order.java, Grid.java, City.java
  */
-
-package src;
 import java.util.Random;
 
 public class PathFinder
@@ -25,6 +23,10 @@ public class PathFinder
     private Order pathways; // Handles Permutations
     private double[][] distances; // Matrix of the distances between each city
 
+    double min_distance;
+    int[] min_order;
+    int[] cur_order;
+
     /* Constructor */
     PathFinder( int kPar, int nPar )
     {
@@ -32,12 +34,13 @@ public class PathFinder
         this.kCities = kPar;
         this.nLength = nPar;
         this.cities = new City[this.kCities];
+        this.min_order = new int[this.kCities+1];
         this.grid = new Grid(this.nLength);
         this.pathways = new Order(kCities);
         this.distances = new double[this.kCities][this.kCities];
 
         this.buildCities();
-        this.calcDistances();
+        this.calcAllDistances();
     }
 
     /* Getters */
@@ -65,7 +68,7 @@ public class PathFinder
     }
 
     /* Create a matrix of the distances between each city */
-    public void calcDistances(){
+    public void calcAllDistances(){
         for (int i = 0; i < cities.length; i++){
             for (int j = 0; j < cities.length; j++){
                 distances[i][j] = cities[i].distance(cities[j]);
@@ -76,6 +79,7 @@ public class PathFinder
     /* Output the distances matrix */
     public void outputDistances(){
         System.out.println();
+        System.out.println("Distances between all of the cities");
         for(int i = 0; i < cities.length; i++) {
             System.out.print("==========");
         }
@@ -88,10 +92,10 @@ public class PathFinder
         System.out.println();
 
         System.out.print("\t");
-        for(int i = 0; i < cities.length; i++) {
+        for(int i = 0; i < cities.length-1; i++) {
             System.out.print("+\t");
         }
-        System.out.println("+");
+        System.out.println("+       +");
 
         for(int j = 0; j < cities.length; j++) {
             System.out.print(j + "\t");
@@ -101,52 +105,61 @@ public class PathFinder
             }
             System.out.println();
             System.out.print("\t");
-            for(int l = 0; l < cities.length; l++) {
+            for(int l = 0; l < cities.length-1; l++) {
                 System.out.print("+\t");
             }
-            System.out.println("+");
+            System.out.println("+       +");
         }
     }
 
     /* Find the path with the shortest distance */
     public double pathDistances() {
         double distance = 0;
-
-        System.out.println("\nDifferent city orders:");
-        for (int i = 0; i < this.kCities; i++){
-            System.out.print(this.pathways.getOrder()[i]);
-        }
-        System.out.println();
-
-        //runs through the following code for every iteration of the order of cities
-        //checks against both the expected number of iterations and if it reaches the actual last iteration, just in case
+        cur_order = pathways.getOrder();
         int count = 1;
         boolean end = false;
+        
+        distance = findDistance(cur_order);
+        min_distance = distance;
+        quickOutput(cur_order, distance);
         while (count < this.pathways.getNumPermutations() && end == false){
-            end = this.pathways.nextOrder(this.pathways.getOrder(), end);               //returns true if the last iteration is found, auto updates order since arrays are passed by ref
-            for (int i = 0; i < this.pathways.getOrder().length; i++){    //more testing output
-                System.out.print(this.pathways.getOrder()[i]);
-            }
-            //*call to calculate distance of path based on order here
-            //*call to compare against lowest found so far here
-            System.out.println();
+            
+            end = this.pathways.nextOrder(cur_order, end);               //returns true if the last iteration is found, auto updates order since arrays are passed by ref
+            distance = findDistance(cur_order);
+            
+            if (distance < min_distance){
+                min_distance = distance;
+                for (int j = 0; j < cur_order.length; j++){
+                    min_order[j] = cur_order[j];
+                }
+                quickOutput(min_order, distance);
+            }           
             count++;
         }
+        
         System.out.println("Permutations: " + count);
+        return distance;
+    }
 
+    public double findDistance(int[] order){
+        double distance = 0;
+        for (int i = 0; i < order.length - 1; i++){
+            int index = order[i];
+            int next = order[i+1];
+            distance += distances[index][next];
+        }
         return distance;
     }
 
     /* Output the newly found quickest path */
-    public void quickOutput(int array[] , double totalDist)
+    public void quickOutput(int[] array, double totalDist)
     {
-        System.out.println("********************");
-        for (int i = 0; i < array.length; i++)
-        {
-            String string = array[i];
+        System.out.print("New Lowest Distance Found - Order: ");
+        for (int i = 0; i < array.length; i++){
+            System.out.print(array[i] + " ");
         }
-        System.out.println("Permutation - " + string + ": " + totalDist);
-        System.out.println("********************");
+        System.out.print(" - Distance: " + totalDist);
+        System.out.println();
     }
 
     /* Object the grid, showing city locations */

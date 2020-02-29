@@ -11,9 +11,6 @@
  *
  * Project Files: Main.java, PathFinder.java, Order.java, Grid.java, > City.java <
  */
-
-package src;
-
 import java.lang.Math;
 
 public class City {

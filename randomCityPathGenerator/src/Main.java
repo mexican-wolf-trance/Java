@@ -14,8 +14,6 @@
  *
  * Resources Used: N/A
  */
-
-package src;
 import java.util.*;
 
 public class Main

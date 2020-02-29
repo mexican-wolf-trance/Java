@@ -11,9 +11,6 @@
  *
  * Project Files: Main.java, PathFinder.java, > Order.java <, Grid.java, City.java
  */
-
-package src;
-
 public class Order{
     int num_cities;
     int num_Permutations;
@@ -28,16 +25,17 @@ public class Order{
     public Order(int c){
         num_cities = c;
         num_Permutations = calcNumPermutations(num_cities);
-        order = new int[num_cities];
+        order = new int[num_cities+1];
         for (int i = 0; i < num_cities; i++){
             order[i]=i;
         }
+        order[num_cities] = 0;
     }
 
     public static boolean nextOrder(int[] order, boolean end){
 	    int I = -1;
 
-	    for (int i = 1; i < order.length - 1; i++){
+	    for (int i = 1; i < order.length - 2; i++){
 	        if (order[i] < order[i+1]){
 	            I = i;
 	        }
@@ -46,7 +44,7 @@ public class Order{
 	        end = true;
 	    }else{
 	        int J = -1;
-	        for (int j = 1; j < order.length; j++){
+	        for (int j = 1; j < order.length - 1; j++){
 	            if (order[I] < order[j]){
 	                J = j;
 	            }
@@ -58,7 +56,7 @@ public class Order{
 
         //reruns the first check to see if it becomes the last iteration after the above changes
         //avoids the function being called twice for the last iteration, may clean up to avoid needed this
-	    for (int i = 1; i < order.length - 1; i++){
+	    for (int i = 1; i < order.length - 2; i++){
 	        if (order[i] < order[i+1]){
 	            true_after_swap = true;
 	        }
@@ -79,12 +77,12 @@ public class Order{
 
     //function to reverse the end of an array starting at a given index
 	public static void reverse(int[] order, int I){
-	    int j = order.length;
+	    int j = order.length - 1;
 	    int[] rev_order = new int[order.length];
 	    for (int i = 0; i < order.length; i++){
 	        rev_order[i] = order[i];
 	    }
-	    for (int i = I; i < order.length; i++){
+	    for (int i = I; i < order.length - 1; i++){
 	        rev_order[j-1] = order[i];
 	        j = j - 1;
 	    }
@@ -101,10 +99,10 @@ public class Order{
             return k * calcNumPermutations(k-1);
     }
 
-    //getters
 	public static int[] getOrder(){
 	    return order;
 	}
+
 	public int getNumPermutations() {
         return num_Permutations;
     }

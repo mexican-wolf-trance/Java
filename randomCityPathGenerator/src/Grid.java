@@ -11,9 +11,6 @@
  *
  * Project Files: Main.java, PathFinder.java, Order.java, > Grid.java <, City.java
  */
-
-package src;
-
 public class Grid {
     private int sideLength;
     private char[][] grid;
