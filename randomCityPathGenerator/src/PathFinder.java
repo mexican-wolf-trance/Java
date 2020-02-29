@@ -78,8 +78,9 @@ public class PathFinder
 
     /* Output the distances matrix */
     public void outputDistances(){
-        System.out.println();
-        System.out.println("Distances between all of the cities");
+        System.out.println("--------------------------------------");
+        System.out.println(" Distances between all of the cities:");
+        System.out.println("--------------------------------------");
         for(int i = 0; i < cities.length; i++) {
             System.out.print("==========");
         }
@@ -110,6 +111,11 @@ public class PathFinder
             }
             System.out.println("+       +");
         }
+
+        for(int i = 0; i < cities.length; i++) {
+            System.out.print("==========");
+        }
+        System.out.println();
     }
 
     /* Find the path with the shortest distance */
@@ -118,26 +124,29 @@ public class PathFinder
         cur_order = pathways.getOrder();
         int count = 1;
         boolean end = false;
-        
+
+        System.out.println("------------------------------------");
+        System.out.println(" Finding the shortest path to take:");
+        System.out.println("------------------------------------");
+
         distance = findDistance(cur_order);
         min_distance = distance;
         quickOutput(cur_order, distance);
         while (count < this.pathways.getNumPermutations() && end == false){
-            
+
             end = this.pathways.nextOrder(cur_order, end);               //returns true if the last iteration is found, auto updates order since arrays are passed by ref
             distance = findDistance(cur_order);
-            
+
             if (distance < min_distance){
                 min_distance = distance;
                 for (int j = 0; j < cur_order.length; j++){
                     min_order[j] = cur_order[j];
                 }
                 quickOutput(min_order, distance);
-            }           
+            }
             count++;
         }
-        
-        System.out.println("Permutations: " + count);
+
         return distance;
     }
 
@@ -164,7 +173,9 @@ public class PathFinder
 
     /* Object the grid, showing city locations */
     public void outputGrid() {
-        System.out.println("A map of all " + this.kCities + " cities in a " + this.nLength + "x" + this.nLength + " grid:");
+        System.out.println("----------------------------------------");
+        System.out.println(" A map of all " + this.kCities + " cities in a " + this.nLength + "x" + this.nLength + " grid:");
+        System.out.println("----------------------------------------");
         this.grid.output();
     }
 }

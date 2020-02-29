@@ -24,8 +24,15 @@ public class Main
         int k, n;
         Scanner input = new Scanner(System.in);
 
+        // Intro
+        System.out.println("===================================");
+        System.out.println(" The Traveling Salesperson Problem");
+        System.out.println("===================================");
+        System.out.println("A salesperson is selling widgets.");
+        System.out.println("They want to tour through every town in the area.");
+
         // Input
-        System.out.println("How many cities does the salesperson need to travel to?");
+        System.out.println("\nHow many cities does the salesperson need to travel to?");
         k = inputInteger(input,4, 9);
         System.out.println("\nHow large is the area that these cities exist in?");
         n = inputInteger(input,10, 30);
@@ -36,7 +43,9 @@ public class Main
 
         // Output Data
         pathfinder.outputGrid();
+        System.out.println();
         pathfinder.outputDistances();
+        System.out.println();
 
         // Find Shortest Path
         pathfinder.pathDistances();
