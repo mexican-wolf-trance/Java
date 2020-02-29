@@ -23,39 +23,43 @@ public class Order{
 
     //constructor
     public Order(int c){
-        num_cities = c;
-        num_Permutations = calcNumPermutations(num_cities);
-        order = new int[num_cities+1];
+        num_cities = c;    //sets the number of cities to the passed in value
+        num_Permutations = calcNumPermutations(num_cities - 1);  //calc number of paths based on cities. -1 because they all start at 0
+        order = new int[num_cities+1];       //order is +1 num cities because he returns to starting city at the end
         for (int i = 0; i < num_cities; i++){
-            order[i]=i;
+            order[i]=i;    //set initial order from 0 to num cities - 1
         }
-        order[num_cities] = 0;
+        order[num_cities] = 0; //set last city back to 0
     }
 
+	//calculates the next permutation of cities according to lexicographical ordering
     public static boolean nextOrder(int[] order, boolean end){
-	    int I = -1;
+	    int I = -1;  //default big index to -1, will be check later to see if last permutation
 
-	    for (int i = 1; i < order.length - 2; i++){
+	    for (int i = 1; i < order.length - 2; i++){  //set i=1 and order.length - 2 because first and last city is always 0
 	        if (order[i] < order[i+1]){
-	            I = i;
+	            I = i;                               //set I to the largest index where there is one further index with a higher value
 	        }
 	    }
-	    if (I == -1){
+	    if (I == -1){    //if there is no index that fits the above loop check, there are no more permutations and the end is reached
 	        end = true;
-	    }else{
-	        int J = -1;
+	    }else{           //if I was reset, find the next permutation
+	        int J = -1;  //like I, set J to default -1. if I is set above, there should always be a J that is set below
 	        for (int j = 1; j < order.length - 1; j++){
 	            if (order[I] < order[j]){
-	                J = j;
+					J = j;       //set J to the largest index with a value that is higher than value at I
+								 //does not mean the highest value past I, but the highest index with a higher value than at I
 	            }
 	        }
-	        swap(order, I, J);
-	        reverse(order, I+1);
+	        swap(order, I, J);   //swaps values at I and J
+			reverse(order, I+1); //reverses the part of the array after I
+								 //swapping and reversing is what provides the next order according to lexicographical ordering
 	    }
         boolean true_after_swap = false;
 
         //reruns the first check to see if it becomes the last iteration after the above changes
-        //avoids the function being called twice for the last iteration, may clean up to avoid needed this
+		//without this, the above logic will return the last order without setting end = true, so function is re-called
+		//byproduct of the check to see if it is the last order being part of the actual algorithm
 	    for (int i = 1; i < order.length - 2; i++){
 	        if (order[i] < order[i+1]){
 	            true_after_swap = true;
