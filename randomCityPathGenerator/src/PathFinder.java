@@ -24,6 +24,7 @@ public class PathFinder
     private double[][] distances; // Matrix of the distances between each city
 
     double min_distance;
+    int min_count;
     int[] min_order;
     int[] cur_order;
 
@@ -131,6 +132,7 @@ public class PathFinder
 
         distance = findDistance(cur_order);
         min_distance = distance;
+        min_count = 1;
         quickOutput(cur_order, distance);
         while (count < this.pathways.getNumPermutations() && end == false){
 
@@ -142,11 +144,12 @@ public class PathFinder
                 for (int j = 0; j < cur_order.length; j++){
                     min_order[j] = cur_order[j];
                 }
+                min_count = count;
                 quickOutput(min_order, distance);
             }
             count++;
         }
-
+        finalOutput(min_order, min_distance, min_count, count);
         return distance;
     }
 
@@ -168,6 +171,17 @@ public class PathFinder
             System.out.print(array[i] + " ");
         }
         System.out.print(" - Distance: " + totalDist);
+        System.out.println();
+    }
+
+    /* Output the final shortest path */
+    public void finalOutput(int[] array, double totalDist, int min_count, int count)
+    {
+        System.out.print("\nThe Shortest Route Has Been Found - Order: ");
+        for (int i = 0; i < array.length; i++){
+            System.out.print(array[i] + " ");
+        }
+        System.out.print(" - Distance: " + totalDist + " - Path#: " + min_count + " out of " + count);
         System.out.println();
     }
 
