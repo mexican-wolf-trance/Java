@@ -4,8 +4,8 @@ import java.util.Random;
 public class PathFinder
 {
     private Random random;
-    private int k; // Number of cities
-    private int n; // Side length of the grid
+    private int kCities; // Number of cities
+    private int nLength; // Side length of the grid
     private City[] cities; // Array of all the cities
     private Grid grid; // Grid that shows a map of the cities
     private Order pathways;
@@ -15,33 +15,33 @@ public class PathFinder
     PathFinder( int kPar, int nPar )
     {
         this.random = new Random();
-        this.k = kPar;
-        this.n = nPar;
-        this.cities = new City[this.k];
-        this.grid = new Grid(this.n);
-        this.pathways = new Order(k);
-        this.distances = new double[this.k][this.k];
+        this.kCities = kPar;
+        this.nLength = nPar;
+        this.cities = new City[this.kCities];
+        this.grid = new Grid(this.nLength);
+        this.pathways = new Order(kCities);
+        this.distances = new double[this.kCities][this.kCities];
 
         this.buildCities();
     }
 
     /* Getters */
-    public int getK()
+    public int getkCities()
     {
-        return this.k;
+        return this.kCities;
     }
-    public int getN()
+    public int getnLength()
     {
-        return this.n;
+        return this.nLength;
     }
 
     /* Create k cities, filling both cities[] and grid */
     public void buildCities() {
         int x, y;
-        for(int index = 0; index < this.k; index++) {
+        for(int index = 0; index < this.kCities; index++) {
             do {
-                x = random.nextInt(this.n);
-                y = random.nextInt(this.n);
+                x = random.nextInt(this.nLength);
+                y = random.nextInt(this.nLength);
             } while(grid.isCity(x, y));
 
             cities[index] = new City(x, y);
@@ -91,13 +91,38 @@ public class PathFinder
         }
     }
 
+    public double pathDistances() {
+        double distance = 0;
+
+        System.out.println("\nDifferent city orders:");
+        for (int i = 0; i < this.kCities; i++){
+            System.out.print(this.pathways.getOrder()[i]);
+        }
+        System.out.println();
+
+        //runs through the following code for every iteration of the order of cities
+        //checks against both the expected number of iterations and if it reaches the actual last iteration, just in case
+        int count = 1;
+        boolean end = false;
+        while (count < this.pathways.getNumPermutations() && end == false){
+            end = this.pathways.nextOrder(this.pathways.getOrder(), end);               //returns true if the last iteration is found, auto updates order since arrays are passed by ref
+            for (int i = 0; i < this.pathways.getOrder().length; i++){    //more testing output
+                System.out.print(this.pathways.getOrder()[i]);
+            }
+            //*call to calculate distance of path based on order here
+            //*call to compare against lowest found so far here
+            System.out.println();
+            count++;
+        }
+        System.out.println("Permutations: " + count);
+
+        return distance;
+    }
+
     /* Object Outputs */
     public void outputGrid() {
-        System.out.println("A map of all " + this.k + " cities in a " + this.n + "x" + this.n + " grid:");
+        System.out.println("A map of all " + this.kCities + " cities in a " + this.nLength + "x" + this.nLength + " grid:");
         this.grid.output();
-    }
-    public void outputPathways() {
-        this.pathways.output();
     }
 
     /*
