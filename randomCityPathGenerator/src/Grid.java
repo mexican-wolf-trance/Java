@@ -30,16 +30,16 @@ public class Grid {
     /* Output the grid. */
     public void output() {
         for(int topIter = 0; topIter < this.sideLength; topIter++) {
-            System.out.print("+   ");
+            System.out.print("+     ");
         }
         System.out.println("+");
         for(int rowIter = 0; rowIter < this.sideLength; rowIter++) {
             for(int columnIter = 0; columnIter < this.sideLength; columnIter++) {
-                System.out.print("  " + this.grid[columnIter][rowIter] + " ");
+                System.out.print("   " + this.grid[columnIter][rowIter] + "  ");
             }
             System.out.println();
             for(int lineIter = 0; lineIter < this.sideLength; lineIter++) {
-                System.out.print("+   ");
+                System.out.print("+     ");
             }
             System.out.println("+");
         }
