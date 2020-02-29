@@ -119,6 +119,7 @@ public class PathFinder
         return distance;
     }
 
+    //Output the newly found quickest path...
     public void quickOutput(int array[] , double totalDist)
     {
         System.out.println("********************");
