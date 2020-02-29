@@ -23,10 +23,10 @@ public class PathFinder
     private Order pathways; // Handles Permutations
     private double[][] distances; // Matrix of the distances between each city
 
-    double min_distance;
-    int min_count;
-    int[] min_order;
-    int[] cur_order;
+    double min_distance; //distance of the shortest path
+    int min_count;       //iteration number of the shortest path
+    int[] min_order;     //order of cities in the shortest path
+    int[] cur_order;     //order of cities being processed
 
     /* Constructor */
     PathFinder( int kPar, int nPar )
@@ -130,37 +130,37 @@ public class PathFinder
         System.out.println(" Finding the shortest path to take:");
         System.out.println("------------------------------------");
 
-        distance = findDistance(cur_order);
-        min_distance = distance;
-        min_count = 1;
-        quickOutput(cur_order, distance);
+        distance = findDistance(cur_order);  //calc distance of initial order
+        min_distance = distance;             //set to min distance because it is the only one so far
+        min_count = 1;                       //min iteration automatically set
+        quickOutput(cur_order, distance);    //output since it is automatically the first min
         while (count < this.pathways.getNumPermutations() && end == false){
 
-            end = this.pathways.nextOrder(cur_order, end);               //returns true if the last iteration is found, auto updates order since arrays are passed by ref
-            distance = findDistance(cur_order);
+            end = this.pathways.nextOrder(cur_order, end);  //returns true if the last iteration is found, auto updates order since arrays are passed by ref
+            distance = findDistance(cur_order);             //find the distance between cities with the new order
 
-            if (distance < min_distance){
-                min_distance = distance;
-                for (int j = 0; j < cur_order.length; j++){
-                    min_order[j] = cur_order[j];
-                }
-                min_count = count;
-                quickOutput(min_order, distance);
+            if (distance < min_distance){                   //if new distance is less than previous min
+                min_distance = distance;                    //replace min
+                for (int j = 0; j < cur_order.length; j++){ //set min order to cur_order
+                    min_order[j] = cur_order[j];            
+                } 
+                min_count = count;                          //set min iteration to current count
+                quickOutput(min_order, distance);           //output as new min
             }
-            count++;
+            count++;                                        //increase iteration number
         }
-        finalOutput(min_order, min_distance, min_count, count);
+        finalOutput(min_order, min_distance, min_count, count);  //once absolute shortest path found, output path
         return distance;
     }
 
     public double findDistance(int[] order){
         double distance = 0;
         for (int i = 0; i < order.length - 1; i++){
-            int index = order[i];
-            int next = order[i+1];
-            distance += distances[index][next];
+            int index = order[i];                    //index set to current city
+            int next = order[i+1];                   //next set to next city
+            distance += distances[index][next];      //reference city distance matrix to find distance between current and next
         }
-        return distance;
+        return distance; //return distance
     }
 
     /* Output the newly found quickest path */
