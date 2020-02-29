@@ -52,7 +52,47 @@ public class PathFinder
         this.grid.output();
     }
 
-
+    public void calcDistances(){
+        for (int i = 0; i < cities.length; i++){
+            for (int j = 0; j < cities.length; j++){
+                distances[i][j] = cities[i].distance(cities[j]);
+            }
+        }
+    }
+    
+    public void outputDistances(){
+        System.out.println();
+        for(int i = 0; i < cities.length; i++) {
+            System.out.print("==========");
+        }
+        System.out.println();
+        
+        System.out.print("\t");
+        for(int i = 0; i < cities.length; i++) {
+            System.out.print("    " + i + "\t");
+        }
+        System.out.println();
+        
+        System.out.print("\t");
+        for(int i = 0; i < cities.length; i++) {
+            System.out.print("+\t");
+        }
+        System.out.println("+");
+        
+        for(int j = 0; j < cities.length; j++) {
+            System.out.print(j + "\t");
+            for(int k = 0; k < cities.length; k++) {
+                String distance2D = String.format("%.2f", distances[j][k]);
+                System.out.print("  " + distance2D + "\t");
+            }
+            System.out.println();
+            System.out.print("\t");
+            for(int l = 0; l < cities.length; l++) {
+                System.out.print("+\t");
+            }
+            System.out.println("+");
+        }
+    }
 
     /*
     public int setK()
@@ -106,11 +146,5 @@ public class PathFinder
        System.out.println("n = " + n);
        return this.n;
     }
-     
-
-    public int getN()
-    {
-        return this.n;
-    }
-    */
+     */
 }

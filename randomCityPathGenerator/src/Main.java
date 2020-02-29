@@ -34,7 +34,8 @@ public class Main
         PathFinder pathfinder = new PathFinder(k,n);
 
         pathfinder.outputGrid();
-
+        pathfinder.calcDistances();
+        pathfinder.outputDistances();
 
 
         boolean end = false;
