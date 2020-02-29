@@ -18,21 +18,24 @@
 package src;
 import java.util.*;
 
-
 public class Main
 {
     public static void main (String[] args)
     {
+        int k, n;
+        Scanner input = new Scanner(System.in);
 
-        System.out.println("I'm made it at least here...");
+        System.out.println("How many cities does the salesperson need to travel to?");
+        k = inputInteger(input,4, 9);
+        System.out.println("\nHow large is the area that these cities exist in?");
+        n = inputInteger(input,10, 30);
+        System.out.println();
 
-        PathFinder pathfinder = new PathFinder(0,0);
-		int k = pathfinder.setK();
-		int n = pathfinder.setN();
-        Grid Grid1 = new Grid(n);
+        PathFinder pathfinder = new PathFinder(k,n);
 
-        System.out.println("Incredible! the grid is " + Grid1.getLength() + " x " + Grid1.getLength());
-        System.out.println("Number of cities: " + pathfinder.getK());
+        pathfinder.outputGrid();
+
+
 
         boolean end = false;
 		Order order = new Order(k);
@@ -41,6 +44,7 @@ public class Main
 		int count = 1;
         int max = numPermutations(k); //max set to 1 less than size because they all start at 0, will end up being K - 1
         //test output
+        System.out.println("\nDifferent city orders:");
 		for (int i = 0; i < k; i++){
 	        System.out.print(cur_order[i]);
 	    }
@@ -61,6 +65,33 @@ public class Main
 		System.out.println("Permutations: " + count); //more testing output
 
 	}
+
+	public static int inputInteger(Scanner input, int min, int max) {
+        int intInput;
+
+        do
+        {
+            System.out.print("Enter an integer within " + min + " and " + max + ": ");
+
+            //Check if the user entered a string and then throw an error
+            //If it is a string, try again
+            while (!input.hasNextInt())
+            {
+                input.next();
+                System.out.println("  ERROR: Input is not an integer.");
+                System.out.print("Enter an integer within " + min + " and " + max + ": ");
+            }
+            //Check if the integer the user finally entered is within the parameters
+            //Try again if not
+            intInput = input.nextInt();
+            if (intInput < min || intInput > max)
+            {
+                System.out.println("  ERROR: Input is not within " + min + " and " + max + ": ");
+            }
+        } while (intInput < min || intInput > max);
+
+        return intInput;
+    }
 
     //factorial algorithm to return the expected amount of iterations for a given number of cities
 	public static int numPermutations(int k){

@@ -1,21 +1,60 @@
 package src;
-import java.util.*;
+import java.util.Random;
 
-//This is a class deticated to the input validation
 public class PathFinder
 {
-    private Scanner cityInput;
-    private int k;
-    private int n;
+    private Random random;
+    private int k; // Number of cities
+    private int n; // Side length of the grid
+    private City[] cities; // Array of all the cities
+    private Grid grid; // Grid that shows a map of the cities
+    private double[][] distances; // Matrix of the distances between each city
 
-    //Input validation object
-    PathFinder( int k, int n )
+    /* Constructor */
+    PathFinder( int kPar, int nPar )
     {
-        this.cityInput = new Scanner(System.in);
-        this.k = k;
-        this.n = n;
+        this.random = new Random();
+        this.k = kPar;
+        this.n = nPar;
+        this.cities = new City[this.k];
+        this.grid = new Grid(this.n);
+        this.distances = new double[this.k][this.k];
+
+        this.buildCities();
     }
 
+    /* Getters */
+    public int getK()
+    {
+        return this.k;
+    }
+    public int getN()
+    {
+        return this.n;
+    }
+
+    /* Create k cities, filling both cities[] and grid */
+    public void buildCities() {
+        int x, y;
+        for(int index = 0; index < this.k; index++) {
+            do {
+                x = random.nextInt(this.n);
+                y = random.nextInt(this.n);
+            } while(grid.isCity(x, y));
+
+            cities[index] = new City(x, y);
+            grid.createCity((char) (48 + index), x, y);
+        }
+    }
+
+    public void outputGrid() {
+        System.out.println("A map of all " + this.k + " cities in a " + this.n + "x" + this.n + " grid:");
+        this.grid.output();
+    }
+
+
+
+    /*
     public int setK()
     {
         //Input validation time!!
@@ -65,15 +104,8 @@ public class PathFinder
        System.out.println("n = " + n);
        return this.n;
     }
-    public int getK()
-    {
-        return this.k;
-    }
+     */
 
-    public int getN()
-    {
-        return this.n;
-    }
 
     // public static void inputValidation (final String[] args)
     // {
