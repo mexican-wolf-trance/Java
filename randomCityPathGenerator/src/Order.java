@@ -2,6 +2,7 @@ package src;
 
 public class Order{
     int num_cities;
+    int num_Permutations;
     static int[] order;
 
     public Order(){
@@ -10,6 +11,7 @@ public class Order{
 
     public Order(int c){
         num_cities = c;
+        num_Permutations = calcNumPermutations(num_cities);
         order = new int[num_cities];
         for (int i = 0; i < num_cities; i++){
             order[i]=i;
@@ -75,7 +77,44 @@ public class Order{
 	    }
 	}
 
+    //factorial algorithm to return the expected amount of iterations for a given number of cities
+    public static int calcNumPermutations(int k){
+        if (k == 1)
+            return 1;
+        else
+            return k * calcNumPermutations(k-1);
+    }
+
 	public static int[] getOrder(){
 	    return order;
 	}
+
+	public int getNumPermutations() {
+        return num_Permutations;
+    }
+
+    //test output
+    public void output() {
+        System.out.println("\nDifferent city orders:");
+        for (int i = 0; i < num_cities; i++){
+            System.out.print(order[i]);
+        }
+        System.out.println();
+
+        //runs through the following code for every iteration of the order of cities
+        //checks against both the expected number of iterations and if it reaches the actual last iteration, just in case
+        int count = 1;
+        boolean end = false;
+        while (count < num_Permutations && end == false){
+            end = nextOrder(order, end);               //returns true if the last iteration is found, auto updates order since arrays are passed by ref
+            for (int i = 0; i < order.length; i++){    //more testing output
+                System.out.print(order[i]);
+            }
+            //*call to calculate distance of path based on order here
+            //*call to compare against lowest found so far here
+            System.out.println();
+            count++;
+        }
+        System.out.println("Permutations: " + count);
+    }
 }

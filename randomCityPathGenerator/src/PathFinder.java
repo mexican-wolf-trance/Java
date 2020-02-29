@@ -8,6 +8,7 @@ public class PathFinder
     private int n; // Side length of the grid
     private City[] cities; // Array of all the cities
     private Grid grid; // Grid that shows a map of the cities
+    private Order pathways;
     private double[][] distances; // Matrix of the distances between each city
 
     /* Constructor */
@@ -18,6 +19,7 @@ public class PathFinder
         this.n = nPar;
         this.cities = new City[this.k];
         this.grid = new Grid(this.n);
+        this.pathways = new Order(k);
         this.distances = new double[this.k][this.k];
 
         this.buildCities();
@@ -47,11 +49,6 @@ public class PathFinder
         }
     }
 
-    public void outputGrid() {
-        System.out.println("A map of all " + this.k + " cities in a " + this.n + "x" + this.n + " grid:");
-        this.grid.output();
-    }
-
     public void calcDistances(){
         for (int i = 0; i < cities.length; i++){
             for (int j = 0; j < cities.length; j++){
@@ -59,26 +56,26 @@ public class PathFinder
             }
         }
     }
-    
+
     public void outputDistances(){
         System.out.println();
         for(int i = 0; i < cities.length; i++) {
             System.out.print("==========");
         }
         System.out.println();
-        
+
         System.out.print("\t");
         for(int i = 0; i < cities.length; i++) {
             System.out.print("    " + i + "\t");
         }
         System.out.println();
-        
+
         System.out.print("\t");
         for(int i = 0; i < cities.length; i++) {
             System.out.print("+\t");
         }
         System.out.println("+");
-        
+
         for(int j = 0; j < cities.length; j++) {
             System.out.print(j + "\t");
             for(int k = 0; k < cities.length; k++) {
@@ -92,6 +89,15 @@ public class PathFinder
             }
             System.out.println("+");
         }
+    }
+
+    /* Object Outputs */
+    public void outputGrid() {
+        System.out.println("A map of all " + this.k + " cities in a " + this.n + "x" + this.n + " grid:");
+        this.grid.output();
+    }
+    public void outputPathways() {
+        this.pathways.output();
     }
 
     /*
