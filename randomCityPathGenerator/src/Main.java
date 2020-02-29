@@ -3,7 +3,7 @@
  * February 28, 2020
  * Authors: Jared Hunsaker -
  *          Jordan Lanius  - jwlq89@mail.umsl.edu
- *          Charles Wyatt  -
+ *          Charles Wyatt  - cwdh4@mail.umsl.edu
  *
  * - Analyzing a Random TSP -
  * This program finds the shortest path between K cities in a N x N grid.
