@@ -37,7 +37,7 @@ public class Main
         pathfinder.outputGrid();
         pathfinder.outputDistances();
 
-        pathfinder.outputPathways();
+        pathfinder.pathDistances();
 	}
 
 	public static int inputInteger(Scanner input, int min, int max) {
