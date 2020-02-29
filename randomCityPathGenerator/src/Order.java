@@ -1,3 +1,17 @@
+/* Homework 3 - Analyzing a Random TSP
+ * CS 4500 - 02
+ * February 28, 2020
+ * Authors: Jared Hunsaker - jthp73@mail.umsl.edu
+ *          Jordan Lanius  - jwlq89@mail.umsl.edu
+ *          Charles Wyatt  - cwdh4@mail.umsl.edu
+ *
+ * - PathFinder.java -
+ * This object handles the various permutations of visiting order that the salesperson
+ * must choose from.
+ *
+ * Project Files: Main.java, PathFinder.java, > Order.java <, Grid.java, City.java
+ */
+
 package src;
 
 public class Order{
@@ -5,10 +19,12 @@ public class Order{
     int num_Permutations;
     static int[] order;
 
+    //empty constructor
     public Order(){
         num_cities = 0;
     }
 
+    //constructor
     public Order(int c){
         num_cities = c;
         num_Permutations = calcNumPermutations(num_cities);
@@ -85,10 +101,10 @@ public class Order{
             return k * calcNumPermutations(k-1);
     }
 
+    //getters
 	public static int[] getOrder(){
 	    return order;
 	}
-
 	public int getNumPermutations() {
         return num_Permutations;
     }

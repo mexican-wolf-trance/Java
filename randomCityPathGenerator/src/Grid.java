@@ -1,3 +1,17 @@
+/* Homework 3 - Analyzing a Random TSP
+ * CS 4500 - 02
+ * February 28, 2020
+ * Authors: Jared Hunsaker - jthp73@mail.umsl.edu
+ *          Jordan Lanius  - jwlq89@mail.umsl.edu
+ *          Charles Wyatt  - cwdh4@mail.umsl.edu
+ *
+ * - Grid.java -
+ * This object contains a grid of variable size. Cities can be added to this grid in order
+ * to output a representation of their relative locations.
+ *
+ * Project Files: Main.java, PathFinder.java, Order.java, > Grid.java <, City.java
+ */
+
 package src;
 
 public class Grid {

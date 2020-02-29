@@ -22,27 +22,33 @@ public class Main
 {
     public static void main (String[] args)
     {
+        // Variables
         int k, n;
         Scanner input = new Scanner(System.in);
 
+        // Input
         System.out.println("How many cities does the salesperson need to travel to?");
         k = inputInteger(input,4, 9);
         System.out.println("\nHow large is the area that these cities exist in?");
         n = inputInteger(input,10, 30);
         System.out.println();
 
+        // Create PathFinder Object
         PathFinder pathfinder = new PathFinder(k,n);
-        pathfinder.calcDistances();
 
+        // Output Data
         pathfinder.outputGrid();
         pathfinder.outputDistances();
 
+        // Find Shortest Path
         pathfinder.pathDistances();
 	}
 
+	/* Input Validation */
 	public static int inputInteger(Scanner input, int min, int max) {
         int intInput;
 
+        //Loop until the input is an integer inside the required bounds
         do
         {
             System.out.print("Enter an integer within " + min + " and " + max + ": ");

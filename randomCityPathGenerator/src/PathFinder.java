@@ -1,3 +1,17 @@
+/* Homework 3 - Analyzing a Random TSP
+ * CS 4500 - 02
+ * February 28, 2020
+ * Authors: Jared Hunsaker - jthp73@mail.umsl.edu
+ *          Jordan Lanius  - jwlq89@mail.umsl.edu
+ *          Charles Wyatt  - cwdh4@mail.umsl.edu
+ *
+ * - PathFinder.java -
+ * This object contains the cities the salesperson must visit and calculates the distances
+ * between them. It also finds the shortest path for the salesperson to tour every city.
+ *
+ * Project Files: Main.java, > PathFinder.java <, Order.java, Grid.java, City.java
+ */
+
 package src;
 import java.util.Random;
 
@@ -8,7 +22,7 @@ public class PathFinder
     private int nLength; // Side length of the grid
     private City[] cities; // Array of all the cities
     private Grid grid; // Grid that shows a map of the cities
-    private Order pathways;
+    private Order pathways; // Handles Permutations
     private double[][] distances; // Matrix of the distances between each city
 
     /* Constructor */
@@ -23,6 +37,7 @@ public class PathFinder
         this.distances = new double[this.kCities][this.kCities];
 
         this.buildCities();
+        this.calcDistances();
     }
 
     /* Getters */
@@ -49,6 +64,7 @@ public class PathFinder
         }
     }
 
+    /* Create a matrix of the distances between each city */
     public void calcDistances(){
         for (int i = 0; i < cities.length; i++){
             for (int j = 0; j < cities.length; j++){
@@ -57,6 +73,7 @@ public class PathFinder
         }
     }
 
+    /* Output the distances matrix */
     public void outputDistances(){
         System.out.println();
         for(int i = 0; i < cities.length; i++) {
@@ -91,6 +108,7 @@ public class PathFinder
         }
     }
 
+    /* Find the path with the shortest distance */
     public double pathDistances() {
         double distance = 0;
 
@@ -119,7 +137,7 @@ public class PathFinder
         return distance;
     }
 
-    //Output the newly found quickest path...
+    /* Output the newly found quickest path */
     public void quickOutput(int array[] , double totalDist)
     {
         System.out.println("********************");
@@ -127,67 +145,13 @@ public class PathFinder
         {
             String string = array[i];
         }
-        System.out.println("Permustation - " + string + ": " + totalDist);
+        System.out.println("Permutation - " + string + ": " + totalDist);
         System.out.println("********************");
     }
 
-    /* Object Outputs */
+    /* Object the grid, showing city locations */
     public void outputGrid() {
         System.out.println("A map of all " + this.kCities + " cities in a " + this.nLength + "x" + this.nLength + " grid:");
         this.grid.output();
     }
-
-    /*
-    public int setK()
-    {
-        //Input validation time!!
-        System.out.println("Enter the number of cities between 4 and 9:");
-
-        do
-        {
-            //Check if the user entered a string and then throw an error
-            //If it is a string, try again
-            while (!cityInput.hasNextInt())
-            {
-                String input = cityInput.next();
-                System.out.println("Must be an integer between 4 and 9");
-            }
-            //Check if the integer the user finally entered is within the parameters
-            //Try again if not
-            k = cityInput.nextInt();
-            if (k < 4 || k > 9)
-            {
-                System.out.println("Must be an integer between 4 and 9");
-            }
-        } while (k < 4 || k > 9);
-
-        //cityInput.close();
-        System.out.println("k = " + k);
-        return this.k;
-    }
-
-    public int setN()
-    {
-        System.out.println("Enter the length of one side of the square grid between 10 and 30:");
-
-        do
-        {
-           //Same as above except for the grid dimension
-           while (!cityInput.hasNextInt())
-           {
-               String input = cityInput.next();
-               System.out.println("Must be an integer between 10 and 30");
-           }
-           n = cityInput.nextInt();
-           if (n < 10 || n > 30 )
-           {
-               System.out.println("Must be an integer between 10 and 30");
-           }
-       } while (n < 10 || n > 30);
-
-       //cityInput.close();
-       System.out.println("n = " + n);
-       return this.n;
-    }
-     */
 }
