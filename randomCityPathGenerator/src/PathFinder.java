@@ -106,10 +106,11 @@ public class PathFinder
        System.out.println("n = " + n);
        return this.n;
     }
-     */
+     
 
     public int getN()
     {
         return this.n;
     }
+    */
 }
