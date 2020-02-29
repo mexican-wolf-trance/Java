@@ -1,6 +1,24 @@
+/* Homework 3 - Analyzing a Random TSP
+ * CS 4500 - 02
+ * February 28, 2020
+ * Authors: Jared Hunsaker -
+ *          Jordan Lanius  - jwlq89@mail.umsl.edu
+ *          Charles Wyatt  -
+ *
+ * - Analyzing a Random TSP -
+ * This program finds the shortest path between K cities in a N x N grid.
+ *
+ * Project Files: > Main.java <, PathFinder.java, Order.java, Grid.java, City.java
+ * External Files Required: N/A
+ * External Files Created: N/A
+ *
+ * Resources Used: N/A
+ */
+
 package src;
 import java.util.*;
 
+<<<<<<< HEAD
 /*
 randomCityPathGenerator
 Main.java
@@ -18,10 +36,13 @@ between the cities.
 Did not use any external sources...
 
  */
+=======
+>>>>>>> 9b920a1bbcf6da0af6ea8fa5a381035cba156a5f
 public class Main
 {
     public static void main (String[] args)
     {
+<<<<<<< HEAD
         
         System.out.println("I made it at least here...");
         
@@ -32,26 +53,47 @@ public class Main
 
         System.out.println("Incredible! the grid is " + Grid1.getLength() + " x " + Grid1.getLength());
         System.out.println("Number of cities: " + Pathfinder1.getK());
+=======
+        int k, n;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("How many cities does the salesperson need to travel to?");
+        k = inputInteger(input,4, 9);
+        System.out.println("\nHow large is the area that these cities exist in?");
+        n = inputInteger(input,10, 30);
+        System.out.println();
+
+        PathFinder pathfinder = new PathFinder(k,n);
+
+        pathfinder.outputGrid();
+
+
+>>>>>>> 9b920a1bbcf6da0af6ea8fa5a381035cba156a5f
 
         boolean end = false;
-		System.out.println("Hello World");
-		int[] nums = new int[]{0,1,2,3,4,5}; //temporary hardcoded city list
-		
+		Order order = new Order(k);
+		int[] cur_order = order.getOrder();
+
 		int count = 1;
+<<<<<<< HEAD
 		int max = numPermutations(Pathfinder1.getK()-1);
         //int max = numPermutations(5); //max set to 1 less than size because they all start at 0, will end up being K - 1
+=======
+        int max = numPermutations(k); //max set to 1 less than size because they all start at 0, will end up being K - 1
+>>>>>>> 9b920a1bbcf6da0af6ea8fa5a381035cba156a5f
         //test output
-		for (int i = 0; i < nums.length; i++){
-	        System.out.print(nums[i]);
+        System.out.println("\nDifferent city orders:");
+		for (int i = 0; i < k; i++){
+	        System.out.print(cur_order[i]);
 	    }
         System.out.println();
 
         //runs through the following code for every iteration of the order of cities
         //checks against both the expected number of iterations and if it reaches the actual last iteration, just in case
 		while (count < max && end == false){
-		    end = nextOrder(nums, end);               //returns true if the last iteration is found, auto updates order since arrays are passed by ref
-		    for (int i = 0; i < nums.length; i++){    //more testing output
-		        System.out.print(nums[i]);
+		    end = order.nextOrder(cur_order, end);               //returns true if the last iteration is found, auto updates order since arrays are passed by ref
+		    for (int i = 0; i < cur_order.length; i++){    //more testing output
+		        System.out.print(cur_order[i]);
             }
             //*call to calculate distance of path based on order here
             //*call to compare against lowest found so far here
@@ -60,66 +102,35 @@ public class Main
 		}
 		System.out.println("Permutations: " + count); //more testing output
 
+	}
+
+	public static int inputInteger(Scanner input, int min, int max) {
+        int intInput;
+
+        do
+        {
+            System.out.print("Enter an integer within " + min + " and " + max + ": ");
+
+            //Check if the user entered a string and then throw an error
+            //If it is a string, try again
+            while (!input.hasNextInt())
+            {
+                input.next();
+                System.out.println("  ERROR: Input is not an integer.");
+                System.out.print("Enter an integer within " + min + " and " + max + ": ");
+            }
+            //Check if the integer the user finally entered is within the parameters
+            //Try again if not
+            intInput = input.nextInt();
+            if (intInput < min || intInput > max)
+            {
+                System.out.println("  ERROR: Input is not within " + min + " and " + max + ": ");
+            }
+        } while (intInput < min || intInput > max);
+
+        return intInput;
     }
-    public static boolean nextOrder(int[] order, boolean end){
-	    int I = -1;
-	    
-	    for (int i = 1; i < order.length - 1; i++){
-	        if (order[i] < order[i+1]){
-	            I = i;
-	        }
-	    }
-	    if (I == -1){
-	        end = true;
-	    }else{
-	        int J = -1;
-	        for (int j = 1; j < order.length; j++){
-	            if (order[I] < order[j]){
-	                J = j;
-	            }
-	        }
-	        swap(order, I, J);
-	        reverse(order, I+1);
-	    }
-        boolean true_after_swap = false;
-        
-        //reruns the first check to see if it becomes the last iteration after the above changes
-        //avoids the function being called twice for the last iteration, may clean up to avoid needed this
-	    for (int i = 1; i < order.length - 1; i++){
-	        if (order[i] < order[i+1]){
-	            true_after_swap = true;
-	        }
-	    }
-	    if (true_after_swap == false){
-	        end = true;
-	    }
-	    
-	    return end;
-	}
-    
-    //simple swap function to switch two values in an array
-	public static void swap(int[] order, int I, int J){
-	    int temp = order[I];
-	    order[I] = order[J];
-	    order[J] = temp;
-	}
-    
-    //function to reverse the end of an array starting at a given index
-	public static void reverse(int[] order, int I){
-	    int j = order.length;
-	    int[] rev_order = new int[order.length];
-	    for (int i = 0; i < order.length; i++){
-	        rev_order[i] = order[i];
-	    }
-	    for (int i = I; i < order.length; i++){
-	        rev_order[j-1] = order[i];
-	        j = j - 1;
-	    }
-	    for (int i = 0; i < order.length; i++){
-	        order[i] = rev_order[i];
-	    }
-	}
-    
+
     //factorial algorithm to return the expected amount of iterations for a given number of cities
 	public static int numPermutations(int k){
         if (k == 1)

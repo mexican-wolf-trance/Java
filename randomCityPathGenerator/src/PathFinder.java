@@ -1,31 +1,70 @@
 package src;
-import java.util.*;
+import java.util.Random;
 
-//This is a class deticated to the input validation
 public class PathFinder
 {
-    private int k;
-    private int n;
+    private Random random;
+    private int k; // Number of cities
+    private int n; // Side length of the grid
+    private City[] cities; // Array of all the cities
+    private Grid grid; // Grid that shows a map of the cities
+    private double[][] distances; // Matrix of the distances between each city
 
-    //Input validation object
-    PathFinder( int k, int n )
+    /* Constructor */
+    PathFinder( int kPar, int nPar )
     {
-        this.k = k;
-        this.n = n;
+        this.random = new Random();
+        this.k = kPar;
+        this.n = nPar;
+        this.cities = new City[this.k];
+        this.grid = new Grid(this.n);
+        this.distances = new double[this.k][this.k];
+
+        this.buildCities();
     }
 
+    /* Getters */
+    public int getK()
+    {
+        return this.k;
+    }
+    public int getN()
+    {
+        return this.n;
+    }
+
+    /* Create k cities, filling both cities[] and grid */
+    public void buildCities() {
+        int x, y;
+        for(int index = 0; index < this.k; index++) {
+            do {
+                x = random.nextInt(this.n);
+                y = random.nextInt(this.n);
+            } while(grid.isCity(x, y));
+
+            cities[index] = new City(x, y);
+            grid.createCity((char) (48 + index), x, y);
+        }
+    }
+
+    public void outputGrid() {
+        System.out.println("A map of all " + this.k + " cities in a " + this.n + "x" + this.n + " grid:");
+        this.grid.output();
+    }
+
+
+
+    /*
     public int setK()
     {
-        final Scanner cityInput = new Scanner(System.in);
-
         //Input validation time!!
-        System.out.println("Enter the number of cities between 4 and 9:");            
+        System.out.println("Enter the number of cities between 4 and 9:");
 
-        do 
+        do
         {
             //Check if the user entered a string and then throw an error
             //If it is a string, try again
-            while (!cityInput.hasNextInt()) 
+            while (!cityInput.hasNextInt())
             {
                 String input = cityInput.next();
                 System.out.println("Must be an integer between 4 and 9");
@@ -46,13 +85,12 @@ public class PathFinder
 
     public int setN()
     {
-        final Scanner cityInput = new Scanner(System.in);
-        System.out.println("Enter the length of one side of the square grid between 10 and 30:");            
+        System.out.println("Enter the length of one side of the square grid between 10 and 30:");
 
-        do 
+        do
         {
            //Same as above except for the grid dimension
-           while (!cityInput.hasNextInt()) 
+           while (!cityInput.hasNextInt())
            {
                String input = cityInput.next();
                System.out.println("Must be an integer between 10 and 30");
@@ -68,10 +106,7 @@ public class PathFinder
        System.out.println("n = " + n);
        return this.n;
     }
-    public int getK()
-    {
-        return this.k;
-    }
+     */
 
     public int getN()
     {
