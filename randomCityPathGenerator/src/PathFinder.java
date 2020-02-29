@@ -119,6 +119,17 @@ public class PathFinder
         return distance;
     }
 
+    public void quickOutput(int array[] , double totalDist)
+    {
+        System.out.println("********************");
+        for (int i = 0; i < array.length; i++)
+        {
+            String string = array[i];
+        }
+        System.out.print("Permustation - " + string + ": " + totalDist);
+        System.out.println("********************");
+    }
+
     /* Object Outputs */
     public void outputGrid() {
         System.out.println("A map of all " + this.kCities + " cities in a " + this.nLength + "x" + this.nLength + " grid:");
