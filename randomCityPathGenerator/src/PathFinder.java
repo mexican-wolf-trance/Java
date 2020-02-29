@@ -127,7 +127,7 @@ public class PathFinder
         {
             String string = array[i];
         }
-        System.out.print("Permustation - " + string + ": " + totalDist);
+        System.out.println("Permustation - " + string + ": " + totalDist);
         System.out.println("********************");
     }
 
