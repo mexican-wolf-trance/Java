@@ -18,42 +18,10 @@
 package src;
 import java.util.*;
 
-<<<<<<< HEAD
-/*
-randomCityPathGenerator
-Main.java
-Grid.java, City.java, PathFinder.java
-No external files created
-Charles Wyatt, Jordan Lanius, Jared Hunsaker
-cwdh4@mail.umsl.edu, 
-COMPSCI 4500
-02/28/2020
-
-This program asks the user to generate a grid of a number of cities of their choosing
-(between 4 and 9 cities for real) and then our program will determine the shortest path
-between the cities.
-
-Did not use any external sources...
-
- */
-=======
->>>>>>> 9b920a1bbcf6da0af6ea8fa5a381035cba156a5f
 public class Main
 {
     public static void main (String[] args)
     {
-<<<<<<< HEAD
-        
-        System.out.println("I made it at least here...");
-        
-        PathFinder Pathfinder1 = new PathFinder(0,0);
-        Pathfinder1.setK(); 
-        Pathfinder1.setN();
-        Grid Grid1 = new Grid(Pathfinder1.getN());
-
-        System.out.println("Incredible! the grid is " + Grid1.getLength() + " x " + Grid1.getLength());
-        System.out.println("Number of cities: " + Pathfinder1.getK());
-=======
         int k, n;
         Scanner input = new Scanner(System.in);
 
@@ -68,19 +36,13 @@ public class Main
         pathfinder.outputGrid();
 
 
->>>>>>> 9b920a1bbcf6da0af6ea8fa5a381035cba156a5f
 
         boolean end = false;
 		Order order = new Order(k);
 		int[] cur_order = order.getOrder();
 
 		int count = 1;
-<<<<<<< HEAD
-		int max = numPermutations(Pathfinder1.getK()-1);
-        //int max = numPermutations(5); //max set to 1 less than size because they all start at 0, will end up being K - 1
-=======
         int max = numPermutations(k); //max set to 1 less than size because they all start at 0, will end up being K - 1
->>>>>>> 9b920a1bbcf6da0af6ea8fa5a381035cba156a5f
         //test output
         System.out.println("\nDifferent city orders:");
 		for (int i = 0; i < k; i++){
